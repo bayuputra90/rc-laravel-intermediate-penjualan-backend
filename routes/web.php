@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -28,5 +29,8 @@ Route::get('product/{id}', [ProductController::class, 'show']);
 Route::get('product/{id}/edit', [ProductController::class, 'edit']);
 Route::put('product/{id}', [ProductController::class, 'update']);
 Route::delete('product/{id}', [ProductController::class, 'destroy']);
+
+// Route Dashboard User
+Route::resource('user', UserController::class);
 
 
