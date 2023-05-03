@@ -6,7 +6,7 @@
 
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ url('/') }}">
                     <i class="align-middle" data-feather="home"></i>
                     <span class="align-middle">Home</span>
                 </a>
@@ -16,7 +16,7 @@
                 Data
             </li>
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ url('product') }}">
                     <i class="align-middle" data-feather="package"></i>
                     <span class="align-middle">Product</span>
                 </a>

@@ -16,6 +16,12 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         <table class="table">
             <thead class="table-success">
                 <tr>
@@ -38,10 +44,10 @@
                         <td class="col-md-3 text-center">
                             <a href="{{ url('product/' . $product->id) }}" class="btn btn-sm btn-info rounded">Detail</a> |
                             <a href="{{ url('product/' . $product->id . '/edit') }}" class="btn btn-sm btn-warning rounded">Edit</a> |
-                            <form action="#" method="post" class="d-inline">
+                            <form action="{{ url('product/' . $product->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-sm btn-danger rounded">Delete</button>
+                                <button type="submit" onclick="return confirm('delete this product ?')" class="btn btn-sm btn-danger rounded">Delete</button>
                             </form>
                         </td>
                     </tr>

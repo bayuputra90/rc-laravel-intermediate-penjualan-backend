@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -73,5 +74,66 @@ class ProductController extends Controller
         ];
 
         return view('dashboard.data.product.edit', $data);
+    }
+
+    public function update(Request $request, string $id)
+    {
+        $image = $request->file('image');
+
+        // setting rules
+        $rules = [
+            'name' => 'required',
+            'price' => 'required',
+            'qty' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+        ];
+
+        // If change image give a rule validation
+        if(!empty($image)) {
+            $rules['image'] = 'required|file|image';
+        }
+
+        // Validation
+        $validated = $request->validate($rules);
+
+        $product = Product::find($id);
+        $product->name = $validated['name'];
+        $product->price = $validated['price'];
+        $product->qty = $validated['qty'];
+        $product->description = $validated['description'];
+        $product->status = $validated['status'];
+
+        if(!empty($image)) {
+            // Upload File Image
+            $image = $image->store('images/products', 'public');
+
+            // Delete old image
+            Storage::disk('public')->delete($product->image);
+
+            // Bind field image to save database
+            $product->image = $image;
+        }
+
+        $product->save();
+
+        return redirect(url('product'))->with('message', 'Product has been update');
+    }
+
+    public function destroy(string $id)
+    {
+        $product = Product::find($id);
+
+        if($product) {
+            // Delete old image
+            Storage::disk('public')->delete($product->image);
+
+            // Delete data from database
+            $product->delete();
+
+            return redirect(url('product'))->with('message', 'Product has been delete');
+        } else {
+            return redirect(url('product'))->with('error', 'Product not found !');
+        }
     }
 }
