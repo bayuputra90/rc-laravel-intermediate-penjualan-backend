@@ -5,7 +5,7 @@
     <div class="card-header text-bg-primary d-flex justify-content-between">
         <h5 class="card-title text-light">User</h5>
 
-        <a href="{{ url('user/create') }}" class="btn badge">
+        <a href="{{ route('user.create') }}" class="btn badge">
             <i data-feather="plus"></i>&nbsp;Add
         </a>
     </div>
@@ -40,9 +40,9 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
                         <td class="col-md-3 text-center">
-                            <a href="{{ url('user/' . $user->id) }}" class="btn btn-sm btn-info rounded">Detail</a> |
-                            <a href="{{ url('user/' . $user->id . '/edit') }}" class="btn btn-sm btn-warning rounded">Edit</a> |
-                            <form action="{{ url('user/' . $user->id) }}" method="post" class="d-inline">
+                            <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-info rounded">Detail</a> |
+                            <a href="{{ route('user.edit', $user->id . '/edit') }}" class="btn btn-sm btn-warning rounded">Edit</a> |
+                            <form action="{{ route('user.destroy', $user->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('delete this user ?')" class="btn btn-sm btn-danger rounded">Delete</button>
