@@ -96,6 +96,7 @@ class UserController extends Controller
             'role' => 'required|in:administrator,cashier',
         ];
 
+        // If user change email give a validation rule of email
         if($request->email != $user->email) {
             $rules['email'] = 'required|email:dns|unique:users,email';
         }
@@ -104,9 +105,12 @@ class UserController extends Controller
         $validated = $request->validate($rules);
 
         $user->name = $validated['name'];
+
+        // If user change email, bind data to update field email
         if($request->email != $user->email) {
             $user->email = $validated['email'];
         }
+
         $user->role = $validated['role'];
         $user->save();
 
@@ -118,6 +122,15 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+
+        if($user){
+            $user->delete();
+
+            return redirect()->route('user.index')->with('message', 'User has been delete');
+        } else {
+            return redirect()->route('user.index')->with('error', 'User not found !');
+        }
+
     }
 }
