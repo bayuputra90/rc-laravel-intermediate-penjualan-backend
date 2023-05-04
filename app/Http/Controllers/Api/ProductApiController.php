@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductListResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,14 @@ class ProductApiController extends Controller
                 "total" =>  $products->total(),
                 "path" =>  $products->getOptions()['path'],
             ],
+        ]);
+    }
+
+    public function show(Product $product)
+    {
+        return response()->json([
+            'message' => 'Data berhasil diambil',
+            'data' => ProductResource::make($product),
         ]);
     }
 }
