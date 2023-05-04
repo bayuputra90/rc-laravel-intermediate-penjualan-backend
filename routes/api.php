@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CheckoutApiController;
 use App\Http\Controllers\Api\ProductApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductApiController::class, 'index']);
 Route::get('/products/{product}', [ProductApiController::class, 'show']);
+Route::post('/checkout', [CheckoutApiController::class, 'store']);
