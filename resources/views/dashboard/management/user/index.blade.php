@@ -41,7 +41,7 @@
                         <td>{{ $user->role }}</td>
                         <td class="col-md-3 text-center">
                             <a href="{{ route('user.show', $user->id) }}" class="btn btn-sm btn-info rounded">Detail</a> |
-                            <a href="{{ route('user.edit', $user->id . '/edit') }}" class="btn btn-sm btn-warning rounded">Edit</a> |
+                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-warning rounded">Edit</a> |
                             <form action="{{ route('user.destroy', $user->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')

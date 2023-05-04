@@ -16,7 +16,7 @@
                 Management
             </li>
             <li class="sidebar-item @if(request()->is('user*')) active @endif">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ route('user.index') }}">
                     <i class="align-middle" data-feather="user"></i>
                     <span class="align-middle">User</span>
                 </a>

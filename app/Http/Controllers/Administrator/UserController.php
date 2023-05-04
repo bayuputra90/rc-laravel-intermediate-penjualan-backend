@@ -73,7 +73,11 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::find($id);
+
+        return view('dashboard.management.user.edit')->with([
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -81,7 +85,32 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Retrieve data
+        $user = User::find($id);
+
+        $request['password'] = Hash::make($request['password']);
+
+        // Validation Rules
+        $rules = [
+            'name' => 'required',
+            'role' => 'required|in:administrator,cashier',
+        ];
+
+        if($request->email != $user->email) {
+            $rules['email'] = 'required|email:dns|unique:users,email';
+        }
+
+        // Validation
+        $validated = $request->validate($rules);
+
+        $user->name = $validated['name'];
+        if($request->email != $user->email) {
+            $user->email = $validated['email'];
+        }
+        $user->role = $validated['role'];
+        $user->save();
+
+        return redirect()->route('user.index')->with('message', 'User has been update');
     }
 
     /**

@@ -46,7 +46,7 @@
         </div>
         <div class="card-footer d-flex justify-content-between bg-light">
             <a href="{{ url('product') }}" class="btn btn-secondary rounded">Back</a>
-            <button type="submit" class="btn btn-success rounded">Add Product</button>
+            <button type="submit" class="btn btn-success rounded">Update</button>
         </div>
     </form>
 </div>
