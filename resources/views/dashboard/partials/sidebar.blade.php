@@ -31,6 +31,12 @@
                     <span class="align-middle">Product</span>
                 </a>
             </li>
+            <li class="sidebar-item @if(request()->is('sales*')) active @endif">
+                <a class="sidebar-link" href="#">
+                    <i class="align-middle" data-feather="shopping-bag"></i>
+                    <span class="align-middle">Sales</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

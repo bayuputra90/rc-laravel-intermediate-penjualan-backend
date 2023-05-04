@@ -3,6 +3,7 @@
 use App\Http\Controllers\Administrator\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,5 +33,8 @@ Route::delete('product/{id}', [ProductController::class, 'destroy']);
 
 // Route Dashboard User
 Route::resource('user', UserController::class);
+
+// Route dashboard Sales
+Route::get('sales', [SalesController::class, 'index'])->name('sales.index');
 
 
