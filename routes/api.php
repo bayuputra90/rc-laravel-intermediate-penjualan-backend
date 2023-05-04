@@ -23,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/products', [ProductApiController::class, 'index']);
 Route::get('/products/{product}', [ProductApiController::class, 'show']);
 Route::post('/checkout', [CheckoutApiController::class, 'store']);
+Route::get('/checkout/{checkout}', [CheckoutApiController::class, 'show']);
