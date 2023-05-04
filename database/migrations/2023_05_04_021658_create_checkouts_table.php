@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
             $table->integer('amount');
             $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->text('address');
             $table->enum('status', ['Waiting for payment', 'Process', 'Sent', 'Done'])->default('Waiting for payment');
             $table->timestamps();

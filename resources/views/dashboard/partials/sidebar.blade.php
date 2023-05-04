@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="sidebar-item @if(request()->is('sales*')) active @endif">
-                <a class="sidebar-link" href="#">
+                <a class="sidebar-link" href="{{ route('sales.index') }}">
                     <i class="align-middle" data-feather="shopping-bag"></i>
                     <span class="align-middle">Sales</span>
                 </a>

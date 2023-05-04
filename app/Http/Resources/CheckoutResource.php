@@ -19,6 +19,8 @@ class CheckoutResource extends JsonResource
             'product' => ProductResource::make($this->product),
             'name' => $this->name,
             'address' => $this->address,
+            'email' => $this->email,
+            'phone' => $this->phone,
             'amount' => $this->amount,
             'status' => $this->status,
         ];

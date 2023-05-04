@@ -36,5 +36,7 @@ Route::resource('user', UserController::class);
 
 // Route dashboard Sales
 Route::get('sales', [SalesController::class, 'index'])->name('sales.index');
+Route::get('sales/{checkout}', [SalesController::class, 'show'])->name('sales.show');
+Route::put('sales/{checkout}', [SalesController::class, 'update'])->name('sales.update');
 
 

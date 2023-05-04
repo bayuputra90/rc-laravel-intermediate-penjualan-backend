@@ -40,7 +40,7 @@
                     <td>{{ $checkout->amount }}</td>
                     <td>{{ $checkout->status }}</td>
                     <td class="col-md-3 text-center">
-                        <a href="{{ url('product/' . $checkout->id) }}" class="btn btn-sm btn-info rounded">Detail</a> |
+                        <a href="{{ route('sales.show', $checkout->id) }}" class="btn btn-sm btn-info rounded">Detail</a>
                     </td>
                 </tr>
                 @endforeach
